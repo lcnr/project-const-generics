@@ -4,9 +4,15 @@ TODO: All of this :)
 
 ## Requirements
 
-For this to work, const operations have to be both pure and deterministic, at least when they are used in the type system.
+For this to work, const operations have to be both pure and deterministic,
+at least when they are used in the type system.
 
-FIXME: const allocations?
-FIXME: non-det floats, are they are problem? We use `ap_float` which is hopefully deterministic.
-FIXME: looking at pointers.
-TODO: let `const-eval` figure this out.
+Using floats during CTFE is fully determinstic. So using
+them inside of the type system is fine. CTFE can however
+produce different results than what would happen on real hardware,
+but this is not a concern for const generics.
+
+Other sources of non-determinism are allocations. This non-determinism
+must however not be observed during const-evaluation (TODO: link to const-eval)
+and is only an issue if allocations leaked into the result. This
+will be prevented by using [val-trees](https://github.com/rust-lang/rust/issues/72396).
