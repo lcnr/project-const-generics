@@ -4,7 +4,8 @@ TODO: All of this :)
 
 ## Requirements
 
-For this to work, const operations have to be both pure and deterministic,
+For this to work, const operations have to be deterministic and
+must not depend on any external state,
 at least when they are used in the type system.
 
 Using floats during CTFE is fully determinstic. So using
