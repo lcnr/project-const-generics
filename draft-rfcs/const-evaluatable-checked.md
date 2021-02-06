@@ -14,6 +14,5 @@ produce different results than what would happen on real hardware,
 but this is not a concern for const generics.
 
 Other sources of non-determinism are allocations. This non-determinism
-must however not be observed during const-evaluation (TODO: link to const-eval)
-and is only an issue if allocations leaked into the result. This
-will be prevented by using [val-trees](https://github.com/rust-lang/rust/issues/72396).
+must however not be observed during const-evaluation (TODO: link to const-eval).
+Any references used in a constant are considered equal if their targets are equal, which is also determistic. (ref [val-trees](https://github.com/rust-lang/rust/issues/72396))
